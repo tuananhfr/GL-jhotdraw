@@ -40,6 +40,8 @@ public class PaletteRootPaneUI extends BasicRootPaneUI {
   protected static class PaletteRootLayout implements LayoutManager2, Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final int dimensionInit = 0;
+
     private JRootPane rootPane;
 
     public PaletteRootLayout(JRootPane rootPane) {
@@ -66,7 +68,7 @@ public class PaletteRootPaneUI extends BasicRootPaneUI {
       if (menuBar != null && menuBar.isVisible()) {
         mbd = menuBar.getPreferredSize();
       } else {
-        mbd = new Dimension(0, 0);
+        mbd = new Dimension(dimensionInit, dimensionInit);
       }
       return new Dimension(
           Math.max(rd.width, mbd.width) + i.left + i.right,
@@ -90,12 +92,12 @@ public class PaletteRootPaneUI extends BasicRootPaneUI {
       } else if (contentPane != null) {
         rd = new Dimension(0, contentPane.getPreferredSize().height);
       } else {
-        rd = new Dimension(0, 0);
+        rd = new Dimension(dimensionInit, dimensionInit);
       }
       if (menuBar != null && menuBar.isVisible()) {
         mbd = menuBar.getMinimumSize();
       } else {
-        mbd = new Dimension(0, 0);
+        mbd = new Dimension(dimensionInit, dimensionInit);
       }
       return new Dimension(
           Math.max(rd.width, mbd.width) + i.left + i.right,
@@ -117,7 +119,7 @@ public class PaletteRootPaneUI extends BasicRootPaneUI {
       if (menuBar != null && menuBar.isVisible()) {
         mbd = menuBar.getMaximumSize();
       } else {
-        mbd = new Dimension(0, 0);
+        mbd = new Dimension(dimensionInit, dimensionInit);
       }
       if (contentPane != null && contentPane.isVisible()) {
         rd = contentPane.getMaximumSize();
@@ -157,7 +159,7 @@ public class PaletteRootPaneUI extends BasicRootPaneUI {
       // technically, these are not our children.
       if (menuBar != null && menuBar.isVisible()) {
         Dimension mbd = menuBar.getPreferredSize();
-        menuBar.setBounds(0, 0, w, mbd.height);
+        menuBar.setBounds(dimensionInit, dimensionInit, w, mbd.height);
         contentY += mbd.height;
       }
       if (contentPane != null) {
