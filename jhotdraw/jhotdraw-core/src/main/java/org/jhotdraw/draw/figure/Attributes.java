@@ -39,7 +39,7 @@ public final class Attributes {
   /**
    * Forbidden attributes can't be put by the put() operation. They can only be changed by put().
    */
-  private HashSet<AttributeKey<?>> forbiddenAttributes;
+  private HashSet<AttributeKey<?>> ForbiddenAttributes;
 
   private AttributeListener listener;
 
@@ -63,13 +63,13 @@ public final class Attributes {
   }
 
   public void setAttributeEnabled(AttributeKey<?> key, boolean b) {
-    if (forbiddenAttributes == null) {
-      forbiddenAttributes = new HashSet<>();
+    if (ForbiddenAttributes == null) {
+      ForbiddenAttributes = new HashSet<>();
     }
     if (b) {
-      forbiddenAttributes.remove(key);
+      ForbiddenAttributes.remove(key);
     } else {
-      forbiddenAttributes.add(key);
+      ForbiddenAttributes.add(key);
     }
   }
 
@@ -80,7 +80,7 @@ public final class Attributes {
    * @return
    */
   public boolean isAttributeEnabled(AttributeKey<?> key) {
-    return forbiddenAttributes == null || !forbiddenAttributes.contains(key);
+    return ForbiddenAttributes == null || !ForbiddenAttributes.contains(key);
   }
 
   public void setAttributes(Map<AttributeKey<?>, Object> map) {
@@ -145,7 +145,7 @@ public final class Attributes {
    * @see AttributeKey#set
    */
   public <T> Attributes set(final AttributeKey<T> key, final T newValue) {
-    if (forbiddenAttributes == null || !forbiddenAttributes.contains(key)) {
+    if (ForbiddenAttributes == null || !ForbiddenAttributes.contains(key)) {
       T oldValue = key.put(attributes, newValue);
       fireAttributeChanged(key, oldValue, newValue);
     }
@@ -210,8 +210,8 @@ public final class Attributes {
       Attributes source, AttributeListener listener, Supplier<List<Attributes>> dependent) {
     Attributes attr = new Attributes(listener, dependent);
     attr.attributes.putAll(source.attributes);
-    if (source.forbiddenAttributes != null) {
-      attr.forbiddenAttributes = new HashSet<>(source.forbiddenAttributes);
+    if (source.ForbiddenAttributes != null) {
+      attr.ForbiddenAttributes = new HashSet<>(source.ForbiddenAttributes);
     }
     return attr;
   }
