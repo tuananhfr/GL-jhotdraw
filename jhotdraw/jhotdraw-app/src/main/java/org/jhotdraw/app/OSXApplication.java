@@ -63,8 +63,8 @@ import org.jhotdraw.util.prefs.*;
  * {@code OSXApplication} handles the lifecycle of multiple {@link View}s using a Mac OS X
  * application interface.
  *
- * <p>This user interface created by this application follows the guidelines given in the <a
- * href="http://developer.apple.com/mac/library/documentation/UserExperience/Conceptual/AppleHIGuidelines/"
+ * <p>This user interface created by this application follows the guidelines given in the <a href=
+ * "http://developer.apple.com/mac/library/documentation/UserExperience/Conceptual/AppleHIGuidelines/"
  * >Apple Human Interface Guidelines</a>.
  *
  * <p>An application of this type can open multiple {@link View}s. Each view is shown in a separate
@@ -86,7 +86,8 @@ import org.jhotdraw.util.prefs.*;
  * <p>The screen menu bar has the following standard menus:
  *
  * <pre>
- * "Application-Name" &nbsp; File &nbsp; Edit &nbsp; Window</pre>
+ * "Application-Name" &nbsp; File &nbsp; Edit &nbsp; Window
+ * </pre>
  *
  * The first menu, is the <b>application menu</b>. It has the following standard menu items:
  *
@@ -326,7 +327,8 @@ public class OSXApplication extends AbstractApplication {
     v.setTitle(labels.getFormatted("frame.title", title, getName(), v.getMultipleOpenId()));
     f.setTitle(v.getTitle());
     // Adds a proxy icon for the file to the title bar
-    // See http://developer.apple.com/technotes/tn2007/tn2196.html#WINDOW_DOCUMENTFILE
+    // See
+    // http://developer.apple.com/technotes/tn2007/tn2196.html#WINDOW_DOCUMENTFILE
     if (uri != null && uri.getScheme() != null && "file".equals(uri.getScheme())) {
       f.getRootPane().putClientProperty("Window.documentFile", new File(uri));
     } else {
@@ -433,7 +435,6 @@ public class OSXApplication extends AbstractApplication {
   @Override
   public JMenu createWindowMenu(View view) {
     JMenu m;
-    JMenuItem mi;
     m = new JMenu();
     JMenu windowMenu = m;
     labels.configureMenu(m, "window");
@@ -473,8 +474,7 @@ public class OSXApplication extends AbstractApplication {
   @Override
   public JMenu createEditMenu(View view) {
     JMenu m;
-    JMenuItem mi;
-    Action a;
+
     m = new JMenu();
     labels.configureMenu(m, "edit");
     MenuBuilder mb = model.getMenuBuilder();
@@ -597,7 +597,8 @@ public class OSXApplication extends AbstractApplication {
 
   protected void setScreenMenuBar(JMenuBar mb) {
     ((JFrame) getComponent()).setJMenuBar(mb);
-    // pack it (without calling pack, the screen menu bar won't work for some reason)
+    // pack it (without calling pack, the screen menu bar won't work for some
+    // reason)
     invisibleFrame.pack();
   }
 
@@ -746,18 +747,6 @@ public class OSXApplication extends AbstractApplication {
     @Override
     public void windowGainedFocus(WindowEvent e) {
       setActiveView(view);
-    }
-  }
-
-  private static class QuitHandler {
-
-    /**
-     * This method is invoked, when the user has selected the Quit menu item.
-     *
-     * @return Returns true if the application has no unsaved changes and can be closed.
-     */
-    public boolean handleQuit() {
-      return false;
     }
   }
 }
