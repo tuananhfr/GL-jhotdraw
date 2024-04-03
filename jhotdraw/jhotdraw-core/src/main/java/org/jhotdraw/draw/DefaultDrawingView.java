@@ -78,6 +78,8 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
 
   private Drawing drawing;
 
+  private AbstractDrawingView abstractDrawingView;
+
   /**
    * Holds the selected figures in an ordered put. The ordering reflects the sequence that was used
    * to select the figures.
@@ -147,25 +149,7 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
 
   @Override
   public void repaintHandles() {
-    validateHandles();
-    Rectangle r = null;
-    for (Handle h : getSelectionHandles()) {
-      if (r == null) {
-        r = h.getDrawingArea();
-      } else {
-        r.add(h.getDrawingArea());
-      }
-    }
-    for (Handle h : getSecondaryHandles()) {
-      if (r == null) {
-        r = h.getDrawingArea();
-      } else {
-        r.add(h.getDrawingArea());
-      }
-    }
-    if (r != null) {
-      repaint(r);
-    }
+    abstractDrawingView.repaintHandles();
   }
 
   /** Draws the background of the drawing view. */
@@ -268,7 +252,7 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
 
     @Override
     public void focusGained(FocusEvent e) {
-      //   repaintHandles();
+      // repaintHandles();
       if (editor != null) {
         editor.setActiveView(DefaultDrawingView.this);
       }
@@ -276,7 +260,7 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
 
     @Override
     public void focusLost(FocusEvent e) {
-      //   repaintHandles();
+      // repaintHandles();
     }
 
     @Override
@@ -304,8 +288,8 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
         }
       } else {
         // this view should not invalidate its area from foreign drawings changes
-        //        if (e.getInvalidatedArea() != null) {
-        //          repaintDrawingArea(e.getInvalidatedArea());
+        // if (e.getInvalidatedArea() != null) {
+        // repaintDrawingArea(e.getInvalidatedArea());
       }
     }
   }
@@ -341,7 +325,8 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
    * <p>NOTE: To prevent undesired layout effects when using floating text fields, the
    * DefaultDrawingView must not use a layout manager.
    */
-  // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+  // <editor-fold defaultstate="collapsed" desc="Generated
+  // Code">//GEN-BEGIN:initComponents
   private void initComponents() {
     setLayout(null);
   } // </editor-fold>//GEN-END:initComponents
@@ -405,7 +390,8 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
     Point shift = new Point(0, 0);
     if (bufferedArea.contains(vr)
         || bufferedArea.width >= vr.width && bufferedArea.height >= vr.height) {
-      // The visible rect fits into the buffered area, but may be shifted; shift the buffered area.
+      // The visible rect fits into the buffered area, but may be shifted; shift the
+      // buffered area.
       shift.x = bufferedArea.x - vr.x;
       shift.y = bufferedArea.y - vr.y;
       if (shift.x > 0) {
@@ -528,7 +514,8 @@ public class DefaultDrawingView extends JComponent implements DrawingView, Edita
     Point shift = new Point(0, 0);
     if (bufferedArea.contains(vr)
         || bufferedArea.width >= vr.width && bufferedArea.height >= vr.height) {
-      // The visible rect fits into the buffered area, but may be shifted; shift the buffered area.
+      // The visible rect fits into the buffered area, but may be shifted; shift the
+      // buffered area.
       shift.x = bufferedArea.x - vr.x;
       shift.y = bufferedArea.y - vr.y;
       if (shift.x > 0) {
