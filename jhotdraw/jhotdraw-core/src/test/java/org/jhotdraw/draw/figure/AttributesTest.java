@@ -21,7 +21,10 @@ package org.jhotdraw.draw.figure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.awt.Color;
 import org.jhotdraw.draw.AttributeKeys;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +48,32 @@ public class AttributesTest {
     assertEquals(
         attr.get(AttributeKeys.STROKE_WIDTH).doubleValue(),
         attrRestored.get(AttributeKeys.STROKE_WIDTH).doubleValue());
+  }
+
+  @Test
+  public void testSetAndGetAttribute() {
+    Attributes attr = new Attributes();
+    attr.set(AttributeKeys.FILL_COLOR, Color.RED);
+
+    assertEquals(Color.RED, attr.get(AttributeKeys.FILL_COLOR));
+  }
+
+  @Test
+  public void testRemoveAttribute() {
+    Attributes attr = new Attributes();
+    attr.set(AttributeKeys.STROKE_COLOR, Color.BLUE);
+    attr.removeAttribute(AttributeKeys.STROKE_COLOR);
+
+    assertThat(attr.hasAttribute(AttributeKeys.STROKE_COLOR)).isFalse();
+  }
+
+  @Test
+  public void testAttributeEnabled() {
+    Attributes attr = new Attributes();
+    attr.setAttributeEnabled(AttributeKeys.FILL_COLOR, true);
+    attr.setAttributeEnabled(AttributeKeys.STROKE_COLOR, false);
+
+    assertTrue(attr.isAttributeEnabled(AttributeKeys.FILL_COLOR));
+    assertFalse(attr.isAttributeEnabled(AttributeKeys.STROKE_COLOR));
   }
 }
