@@ -299,6 +299,8 @@ public abstract class AbstractDrawing implements Drawing {
     if (basicRemove(figure) != -1) {
       basicAdd(0, figure);
       fireDrawingChanged(figure.getDrawingArea());
+    } else {
+      throw new IllegalArgumentException("Figure is not a child of this drawing.");
     }
   }
 
