@@ -29,13 +29,13 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * <p>Note: you must explicitly set the view before createDisclosedComponents is called for the
  * first time.
  */
-public class ViewToolBar extends AbstractToolBar {
+public class ViewToolBarNew extends AbstractToolBar {
 
   private static final long serialVersionUID = 1L;
   private DrawingView view;
 
   /** Creates new instance. */
-  public ViewToolBar() {
+  public ViewToolBarNew() {
     ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.samples.svg.Labels");
     setName(labels.getString(getID() + ".toolbar"));
     setDisclosureStateCount(3);
