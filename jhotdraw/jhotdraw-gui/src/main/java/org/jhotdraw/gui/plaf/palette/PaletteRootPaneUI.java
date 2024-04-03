@@ -1,5 +1,5 @@
 /**
- * @(#)PaletteRootPaneUINew.java
+ * @(#)PaletteRootPaneUI.java
  *
  * <p>Copyright (c) 2008 The authors and contributors of JHotDraw. You may not use, copy or modify
  * this file, except in compliance with the accompanying license terms.
@@ -12,10 +12,10 @@ import javax.swing.*;
 import javax.swing.plaf.*;
 import javax.swing.plaf.basic.BasicRootPaneUI;
 
-/** PaletteRootPaneUINew. */
-public class PaletteRootPaneUINew extends BasicRootPaneUI {
+/** PaletteRootPaneUI. */
+public class PaletteRootPaneUI extends BasicRootPaneUI {
 
-  private static RootPaneUI rootPaneUI = new PaletteRootPaneUINew();
+  private static RootPaneUI rootPaneUI = new PaletteRootPaneUI();
 
   public static ComponentUI createUI(JComponent c) {
     return rootPaneUI;

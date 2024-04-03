@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
  * @author tw
  */
 public class AttributesTest {
-
   @Test
   public void testBackupRestore() {
     Attributes attr = new Attributes();
