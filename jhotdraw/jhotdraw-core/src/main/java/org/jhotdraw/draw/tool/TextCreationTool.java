@@ -41,7 +41,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * editors.<br>
  * Contract: {@link TextHolderFigure}, {@link TextCreationTool}, {@link TextAreaCreationTool},
  * {@link TextEditingTool}, {@link TextAreaEditingTool}, {@link FloatingTextField}, {@link
- * FloatingTextArea}.
+ * FloatingText}.
  *
  * <p><em>Prototype</em><br>
  * The text creation tools create new figures by cloning a prototype {@code TextHolderFigure}
@@ -52,7 +52,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
 public class TextCreationTool extends CreationTool implements ActionListener {
 
   private static final long serialVersionUID = 1L;
-  private FloatingTextField textField;
+  private FloatingText textField;
   private TextHolderFigure typingTarget;
 
   public TextCreationTool(TextHolderFigure prototype) {
@@ -97,14 +97,14 @@ public class TextCreationTool extends CreationTool implements ActionListener {
 
   protected void beginEdit(TextHolderFigure textHolder) {
     if (textField == null) {
-      textField = new FloatingTextField();
-      textField.addActionListener(this);
+      textField = new FloatingText();
+      textField.addActionListenerField(this);
     }
     if (textHolder != typingTarget && typingTarget != null) {
       endEdit();
     }
-    textField.createOverlay(getView(), textHolder);
-    textField.requestFocus();
+    textField.createOverlayField(getView(), textHolder);
+    textField.requestFocusField();
     typingTarget = textHolder;
   }
 
@@ -116,7 +116,7 @@ public class TextCreationTool extends CreationTool implements ActionListener {
       typingTarget.willChange();
       final TextHolderFigure editedFigure = typingTarget;
       final String oldText = typingTarget.getText();
-      final String newText = textField.getText();
+      final String newText = textField.getTextField();
       if (newText.length() > 0) {
         typingTarget.setText(newText);
       } else {
@@ -157,9 +157,9 @@ public class TextCreationTool extends CreationTool implements ActionListener {
       getDrawing().fireUndoableEditHappened(edit);
       typingTarget.changed();
       typingTarget = null;
-      textField.endOverlay();
+      textField.endOverlayField();
     }
-    //         view().checkDamage();
+    // view().checkDamage();
   }
 
   @Override

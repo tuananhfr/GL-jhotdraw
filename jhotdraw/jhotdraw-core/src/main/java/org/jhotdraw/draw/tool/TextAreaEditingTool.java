@@ -39,15 +39,15 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * editors.<br>
  * Contract: {@link TextHolderFigure}, {@link TextCreationTool}, {@link TextAreaCreationTool},
  * {@link TextEditingTool}, {@link TextAreaEditingTool}, {@link FloatingTextField}, {@link
- * FloatingTextArea}. <hr>
+ * FloatingText}. <hr>
  *
  * @see TextHolderFigure
- * @see FloatingTextArea
+ * @see FloatingText
  */
 public class TextAreaEditingTool extends AbstractTool implements ActionListener {
 
   private static final long serialVersionUID = 1L;
-  private FloatingTextArea textArea;
+  private FloatingText textArea;
   private TextHolderFigure typingTarget;
 
   public TextAreaEditingTool(TextHolderFigure typingTarget) {
@@ -76,15 +76,15 @@ public class TextAreaEditingTool extends AbstractTool implements ActionListener 
 
   protected void beginEdit(TextHolderFigure textHolder) {
     if (textArea == null) {
-      textArea = new FloatingTextArea();
+      textArea = new FloatingText();
       // textArea.addActionListener(this);
     }
     if (textHolder != typingTarget && typingTarget != null) {
       endEdit();
     }
-    textArea.createOverlay(getView(), textHolder);
-    textArea.setBounds(getFieldBounds(textHolder), textHolder.getText());
-    textArea.requestFocus();
+    textArea.createOverlayArea(getView(), textHolder);
+    textArea.setBoundsArea(getFieldBounds(textHolder), textHolder.getText());
+    textArea.requestFocusArea();
     typingTarget = textHolder;
   }
 
@@ -107,7 +107,7 @@ public class TextAreaEditingTool extends AbstractTool implements ActionListener 
       typingTarget.willChange();
       final TextHolderFigure editedFigure = typingTarget;
       final String oldText = typingTarget.getText();
-      final String newText = textArea.getText();
+      final String newText = textArea.getTextArea();
       typingTarget.willChange();
       if (newText.length() > 0) {
         typingTarget.setText(newText);
@@ -144,9 +144,9 @@ public class TextAreaEditingTool extends AbstractTool implements ActionListener 
       getDrawing().fireUndoableEditHappened(edit);
       typingTarget.changed();
       typingTarget = null;
-      textArea.endOverlay();
+      textArea.endOverlayArea();
     }
-    //         view().checkDamage();
+    // view().checkDamage();
   }
 
   @Override

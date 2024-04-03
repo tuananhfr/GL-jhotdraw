@@ -57,7 +57,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * editors.<br>
  * Contract: {@link TextHolderFigure}, {@link TextCreationTool}, {@link TextAreaCreationTool},
  * {@link TextEditingTool}, {@link TextAreaEditingTool}, {@link FloatingTextField}, {@link
- * FloatingTextArea}.
+ * FloatingText}.
  *
  * <p><em>Prototype</em><br>
  * The text creation tools create new figures by cloning a prototype {@code TextHolderFigure}
@@ -68,7 +68,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
 public class TextAreaCreationTool extends CreationTool implements ActionListener {
 
   private static final long serialVersionUID = 1L;
-  private FloatingTextArea textArea;
+  private FloatingText textArea;
   private TextHolderFigure typingTarget;
 
   /** Rubberband color of the tool. When this is null, the tool does not draw a rubberband. */
@@ -127,8 +127,8 @@ public class TextAreaCreationTool extends CreationTool implements ActionListener
   }
 
   /*
-  public void mouseDragged(java.awt.event.MouseEvent e) {
-  }
+   * public void mouseDragged(java.awt.event.MouseEvent e) {
+   * }
    */
   @Override
   public void draw(Graphics2D g) {
@@ -140,15 +140,15 @@ public class TextAreaCreationTool extends CreationTool implements ActionListener
 
   protected void beginEdit(TextHolderFigure textHolder) {
     if (textArea == null) {
-      textArea = new FloatingTextArea();
+      textArea = new FloatingText();
       // textArea.addActionListener(this);
     }
     if (textHolder != typingTarget && typingTarget != null) {
       endEdit();
     }
-    textArea.createOverlay(getView(), textHolder);
-    textArea.setBounds(getFieldBounds(textHolder), textHolder.getText());
-    textArea.requestFocus();
+    textArea.createOverlayArea(getView(), textHolder);
+    textArea.setBoundsArea(getFieldBounds(textHolder), textHolder.getText());
+    textArea.requestFocusArea();
     typingTarget = textHolder;
   }
 
@@ -171,7 +171,7 @@ public class TextAreaCreationTool extends CreationTool implements ActionListener
       typingTarget.willChange();
       final TextHolderFigure editedFigure = typingTarget;
       final String oldText = typingTarget.getText();
-      final String newText = textArea.getText();
+      final String newText = textArea.getTextArea();
       if (newText.length() > 0) {
         typingTarget.setText(newText);
       } else {
@@ -211,9 +211,9 @@ public class TextAreaCreationTool extends CreationTool implements ActionListener
       getDrawing().fireUndoableEditHappened(edit);
       typingTarget.changed();
       typingTarget = null;
-      textArea.endOverlay();
+      textArea.endOverlayArea();
     }
-    //         view().checkDamage();
+    // view().checkDamage();
   }
 
   @Override
