@@ -162,20 +162,11 @@ public abstract class AbstractDrawing implements Drawing {
   /** Notify all listenerList that have registered interest for notification on this event type. */
   @Override
   public void fireUndoableEditHappened(UndoableEdit edit) {
-    UndoableEditEvent event = null;
     if (listenerList.getListenerCount() > 0) {
-      // Notify all listeners that have registered interest for
-      // Guaranteed to return a non-null array
-      Object[] listeners = listenerList.getListenerList();
-      // Process the listeners last to first, notifying
-      // those that are interested in this event
-      for (int i = listeners.length - 2; i >= 0; i -= 2) {
-        if (event == null) {
-          event = new UndoableEditEvent(this, edit);
-        }
-        if (listeners[i] == UndoableEditListener.class) {
-          ((UndoableEditListener) listeners[i + 1]).undoableEditHappened(event);
-        }
+      UndoableEditEvent event = new UndoableEditEvent(this, edit);
+      UndoableEditListener[] listeners = listenerList.getListeners(UndoableEditListener.class);
+      for (UndoableEditListener listener : listeners) {
+        listener.undoableEditHappened(event);
       }
     }
   }
@@ -203,23 +194,29 @@ public abstract class AbstractDrawing implements Drawing {
   @Override
   public Rectangle2D.Double getDrawingArea(double factor) {
     if (cachedDrawingArea == null) {
-      if (getChildCount() == 0) {
-        cachedDrawingArea = new Rectangle2D.Double();
-      } else {
-        for (Figure f : CHILDREN) {
-          if (cachedDrawingArea == null) {
-            cachedDrawingArea = f.getDrawingArea(factor);
-          } else {
-            cachedDrawingArea.add(f.getDrawingArea(factor));
-          }
-        }
-      }
+      calculateDrawingArea(factor);
     }
     return new Rectangle2D.Double(
         cachedDrawingArea.x,
         cachedDrawingArea.y,
         cachedDrawingArea.width,
         cachedDrawingArea.height);
+  }
+
+  private void calculateDrawingArea(double factor) {
+    if (getChildCount() == 0) {
+      cachedDrawingArea = new Rectangle2D.Double();
+    } else {
+      CHILDREN.stream().map(child -> child.getDrawingArea(factor)).forEach(this::updateCachedArea);
+    }
+  }
+
+  private void updateCachedArea(Rectangle2D.Double childArea) {
+    if (cachedDrawingArea == null) {
+      cachedDrawingArea = childArea;
+    } else {
+      cachedDrawingArea.add(childArea);
+    }
   }
 
   @Override
