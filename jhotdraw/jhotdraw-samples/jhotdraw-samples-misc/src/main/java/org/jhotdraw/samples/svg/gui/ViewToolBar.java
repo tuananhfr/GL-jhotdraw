@@ -231,8 +231,9 @@ public class ViewToolBar extends AbstractToolBar {
    */
   // <editor-fold defaultstate="collapsed" desc="Generated
   // Code">//GEN-BEGIN:initComponents
-  private void initComponent() {
+  private int initComponent() {
     setOpaque(false);
+    return 1;
   } // </editor-fold>//GEN-END:initComponents
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables
