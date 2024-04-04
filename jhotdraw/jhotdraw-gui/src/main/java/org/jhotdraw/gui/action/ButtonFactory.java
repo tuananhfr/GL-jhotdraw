@@ -133,6 +133,8 @@ public class ButtonFactory {
   /** Mac OS X 'Apple Color Palette'. This palette has 8 columns. */
   public static final java.util.List<ColorIcon> DEFAULT_COLORS;
 
+  private static Methods methods;
+
   static {
     DEFAULT_COLORS =
         List.of(
@@ -1106,7 +1108,7 @@ public class ButtonFactory {
               try {
                 colorChooser.setUI(
                     (ColorChooserUI)
-                        Methods.invokeStatic(
+                        methods.invokeStatic(
                             uiclass,
                             "createUI",
                             new Class<?>[] {JComponent.class},
@@ -1399,7 +1401,7 @@ public class ButtonFactory {
               try {
                 colorChooser.setUI(
                     (ColorChooserUI)
-                        Methods.invokeStatic(
+                        methods.invokeStatic(
                             uiclass,
                             "createUI",
                             new Class<?>[] {JComponent.class},

@@ -164,6 +164,7 @@ public class OSXApplication extends AbstractApplication {
   private OSXPaletteHandler paletteHandler;
   private Preferences prefs;
   private LinkedList<Action> paletteActions;
+  private Methods methods;
 
   /** The "invisible" frame is used to hold the frameless menu bar on Mac OS X. */
   private JFrame invisibleFrame;
@@ -202,7 +203,7 @@ public class OSXApplication extends AbstractApplication {
     try {
       String lafName =
           (String)
-              Methods.invokeStatic(
+              methods.invokeStatic(
                   "ch.randelshofer.quaqua.QuaquaManager", "getLookAndFeelClassName");
       UIManager.setLookAndFeel(lafName);
     } catch (Exception e) {

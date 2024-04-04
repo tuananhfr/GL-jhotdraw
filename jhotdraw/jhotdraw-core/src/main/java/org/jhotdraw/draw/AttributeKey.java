@@ -46,6 +46,8 @@ public class AttributeKey<T> implements Serializable {
   /** Holds labels for the localization of the attribute. */
   private ResourceBundleUtil labels;
 
+  private Methods methods;
+
   /**
    * This variable is used as a "type token" so that we can check for assignability of attribute
    * values at runtime.
@@ -132,7 +134,7 @@ public class AttributeKey<T> implements Serializable {
   public T getClone(Figure f) {
     T value = f.attr().get(this);
     try {
-      return value == null ? null : clazz.cast(Methods.invoke(value, "clone"));
+      return value == null ? null : clazz.cast(methods.invoke(value, "clone"));
     } catch (NoSuchMethodException ex) {
       InternalError e = new InternalError();
       e.initCause(ex);
@@ -228,7 +230,7 @@ public class AttributeKey<T> implements Serializable {
    */
   public void setClone(Figure f, T value) {
     try {
-      f.attr().set(this, value == null ? null : clazz.cast(Methods.invoke(value, "clone")));
+      f.attr().set(this, value == null ? null : clazz.cast(methods.invoke(value, "clone")));
     } catch (NoSuchMethodException ex) {
       InternalError e = new InternalError();
       e.initCause(ex);
@@ -244,7 +246,7 @@ public class AttributeKey<T> implements Serializable {
    */
   public void putClone(Map<AttributeKey<?>, Object> a, T value) {
     try {
-      put(a, value == null ? null : clazz.cast(Methods.invoke(value, "clone")));
+      put(a, value == null ? null : clazz.cast(methods.invoke(value, "clone")));
     } catch (NoSuchMethodException ex) {
       InternalError e = new InternalError();
       e.initCause(ex);

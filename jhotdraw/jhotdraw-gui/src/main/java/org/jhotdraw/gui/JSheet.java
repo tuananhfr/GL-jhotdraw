@@ -81,6 +81,8 @@ public class JSheet extends JDialog {
    */
   private Component ownersGlassPane;
 
+  private Methods methods;
+
   static {
     // SoyLatte doesn't properly support document modal dialogs yet.
     IS_DOCUMENT_MODALITY_SUPPORTED =
@@ -114,7 +116,7 @@ public class JSheet extends JDialog {
         getRootPane().setBorder(UIManager.getBorder("Sheet.border"));
       }
       if (isDocumentModalitySupported()) {
-        Methods.invokeIfExistsWithEnum(
+        methods.invokeIfExistsWithEnum(
             this, "setModalityType", "java.awt.Dialog$ModalityType", "DOCUMENT_MODAL");
       }
     }
@@ -430,17 +432,24 @@ public class JSheet extends JDialog {
   /** Requests attention from user. This is invoked when the sheet is opened. */
   public static void requestUserAttention(boolean requestCritical) {
     /*
-    NSApplication app = NSApplication.sharedApplication();
-    int id = app.requestUserAttention(
-    NSApplication.UserAttentionRequestInformational);
-    */
+     * NSApplication app = NSApplication.sharedApplication();
+     * int id = app.requestUserAttention(
+     * NSApplication.UserAttentionRequestInformational);
+     */
     /*
-    try {
-    Object app = Methods.invokeStatic("com.apple.cocoa.application.NSApplication", "sharedApplication");
-    Methods.invoke(app, "requestUserAttention", app.getClass().getDeclaredField("UserAttentionRequestInformational").getInt(app));
-    } catch (Throwable ex) {
-    System.err.println("Quaqua Warning: Couldn't invoke NSApplication.requestUserAttention");
-    }*/
+     * try {
+     * Object app =
+     * Methods.invokeStatic("com.apple.cocoa.application.NSApplication",
+     * "sharedApplication");
+     * Methods.invoke(app, "requestUserAttention",
+     * app.getClass().getDeclaredField("UserAttentionRequestInformational").getInt(
+     * app));
+     * } catch (Throwable ex) {
+     * System.err.
+     * println("Quaqua Warning: Couldn't invoke NSApplication.requestUserAttention"
+     * );
+     * }
+     */
   }
 
   /** Adds a sheet listener. */
@@ -587,7 +596,7 @@ public class JSheet extends JDialog {
    *     sheet is displayed as a dialog.
    * @param message the <code>Object</code> to display
    * @param optionType an int designating the options available on the dialog: <code>YES_NO_OPTION
-   *     </code>, or <code>YES_NO_CANCEL_OPTION</code>
+   *     </code> , or <code>YES_NO_CANCEL_OPTION</code>
    * @param listener The listener for SheetEvents.
    */
   public static void showConfirmSheet(
@@ -632,7 +641,7 @@ public class JSheet extends JDialog {
    *     sheet is displayed as a dialog.
    * @param message the Object to display
    * @param optionType an int designating the options available on the dialog: <code>YES_NO_OPTION
-   *     </code>, or <code>YES_NO_CANCEL_OPTION</code>
+   *     </code> , or <code>YES_NO_CANCEL_OPTION</code>
    * @param messageType an int designating the kind of message this is, primarily used to determine
    *     the icon from the pluggable Look and Feel: <code>JOptionPane.ERROR_MESSAGE</code>, <code>
    *     JOptionPane.INFORMATION_MESSAGE</code>, <code>JOptionPane.WARNING_MESSAGE</code>, <code>
@@ -694,8 +703,8 @@ public class JSheet extends JDialog {
    * @param parentComponent the parent <code>Component</code> for the dialog
    * @param message the <code>Object</code> to display
    * @param messageType the type of message that is to be displayed: <code>JOptionPane.ERROR_MESSAGE
-   *     </code>, <code>JOptionPane.INFORMATION_MESSAGE</code>, <code>JOptionPane.WARNING_MESSAGE
-   *     </code>, <code>JOptionPane.QUESTION_MESSAGE</code>, * or <code>JOptionPane.PLAIN_MESSAGE
+   *     </code> , <code>JOptionPane.INFORMATION_MESSAGE</code>, <code>JOptionPane.WARNING_MESSAGE
+   *     </code> , <code>JOptionPane.QUESTION_MESSAGE</code>, * or <code>JOptionPane.PLAIN_MESSAGE
    *     </code>
    * @param listener The listener for SheetEvents.
    */
@@ -743,11 +752,12 @@ public class JSheet extends JDialog {
     JSheet sheet = createSheet(pane, parentComponent, style);
     pane.selectInitialValue();
     /*
-    sheet.addWindowListener(new WindowAdapter() {
-    public void windowClosed(WindowEvent evt) {
-    sheet.dispose();
-    }
-    });*/
+     * sheet.addWindowListener(new WindowAdapter() {
+     * public void windowClosed(WindowEvent evt) {
+     * sheet.dispose();
+     * }
+     * });
+     */
     sheet.addSheetListener(listener);
     sheet.show();
     sheet.toFront();
@@ -996,7 +1006,7 @@ public class JSheet extends JDialog {
           public void propertyChange(PropertyChangeEvent event) {
             // Let the defaultCloseOperation handle the closing
             // if the user closed the window without selecting a button
-            // (newValue = null in that case).  Otherwise, close the sheet.
+            // (newValue = null in that case). Otherwise, close the sheet.
             if (sheet.isVisible()
                 && event.getSource() == pane
                 && (event.getPropertyName().equals(JOptionPane.VALUE_PROPERTY))
