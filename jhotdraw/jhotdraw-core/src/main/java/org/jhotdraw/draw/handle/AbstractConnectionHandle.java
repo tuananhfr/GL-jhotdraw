@@ -20,7 +20,7 @@ import org.jhotdraw.draw.connector.Connector;
 import org.jhotdraw.draw.figure.BezierFigure;
 import org.jhotdraw.draw.figure.ConnectionFigure;
 import org.jhotdraw.draw.figure.Figure;
-import org.jhotdraw.draw.liner.Liner;
+import org.jhotdraw.draw.locator.Liner;
 import org.jhotdraw.geom.path.BezierPath;
 import org.jhotdraw.util.ResourceBundleUtil;
 

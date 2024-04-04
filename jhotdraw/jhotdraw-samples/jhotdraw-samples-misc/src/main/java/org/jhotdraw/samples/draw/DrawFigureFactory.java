@@ -27,8 +27,8 @@ import org.jhotdraw.draw.figure.RoundRectangleFigure;
 import org.jhotdraw.draw.figure.TextAreaFigure;
 import org.jhotdraw.draw.figure.TextFigure;
 import org.jhotdraw.draw.figure.TriangleFigure;
-import org.jhotdraw.draw.liner.CurvedLiner;
-import org.jhotdraw.draw.liner.ElbowLiner;
+import org.jhotdraw.draw.locator.CurvedLiner;
+import org.jhotdraw.draw.locator.ElbowLiner;
 import org.jhotdraw.xml.DefaultDOMFactory;
 
 /** DrawFigureFactory. */

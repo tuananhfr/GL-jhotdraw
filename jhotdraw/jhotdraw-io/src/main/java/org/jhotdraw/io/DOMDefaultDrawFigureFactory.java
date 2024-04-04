@@ -39,10 +39,10 @@ import org.jhotdraw.draw.figure.RoundRectangleFigure;
 import org.jhotdraw.draw.figure.TextAreaFigure;
 import org.jhotdraw.draw.figure.TextFigure;
 import org.jhotdraw.draw.figure.TriangleFigure;
-import org.jhotdraw.draw.liner.CurvedLiner;
-import org.jhotdraw.draw.liner.ElbowLiner;
-import org.jhotdraw.draw.liner.Liner;
 import org.jhotdraw.draw.locator.BezierLabelLocator;
+import org.jhotdraw.draw.locator.CurvedLiner;
+import org.jhotdraw.draw.locator.ElbowLiner;
+import org.jhotdraw.draw.locator.Liner;
 import org.jhotdraw.draw.locator.Locator;
 import org.jhotdraw.draw.locator.RelativeLocator;
 import org.jhotdraw.geom.path.BezierPath;
@@ -326,9 +326,9 @@ public class DOMDefaultDrawFigureFactory extends DefaultDOMFactory {
   public static void readConnector(AbstractConnector connector, DOMInput domInput)
       throws IOException {
     // statePersistent is never set
-    //    if (connector.isStatePersistent) {
-    //      isConnectToDecorator = in.getAttribute("connectToDecorator", false);
-    //    }
+    // if (connector.isStatePersistent) {
+    // isConnectToDecorator = in.getAttribute("connectToDecorator", false);
+    // }
     domInput.openElement("Owner");
     connector.setOwner((Figure) domInput.readObject(0));
     domInput.closeElement();
@@ -336,11 +336,11 @@ public class DOMDefaultDrawFigureFactory extends DefaultDOMFactory {
 
   public static void writeConnector(Connector connector, DOMOutput domOutput) throws IOException {
     // statePersistent is never set
-    //    if (isStatePersistent) {
-    //      if (isConnectToDecorator) {
-    //        out.addAttribute("connectToDecorator", true);
-    //      }
-    //    }
+    // if (isStatePersistent) {
+    // if (isConnectToDecorator) {
+    // out.addAttribute("connectToDecorator", true);
+    // }
+    // }
     domOutput.openElement("Owner");
     domOutput.writeObject(connector.getOwner());
     domOutput.closeElement();
@@ -406,9 +406,10 @@ public class DOMDefaultDrawFigureFactory extends DefaultDOMFactory {
   public static void readText(TextFigure figure, DOMInput domInput) throws IOException {
     figure.setOrigin(
         new Point2D.Double(domInput.getAttribute("x", 0d), domInput.getAttribute("y", 0d)));
-    //    figure.setBounds(
-    //        new Point2D.Double(domInput.getAttribute("x", 0d), domInput.getAttribute("y", 0d)),
-    //        new Point2D.Double(0, 0));
+    // figure.setBounds(
+    // new Point2D.Double(domInput.getAttribute("x", 0d), domInput.getAttribute("y",
+    // 0d)),
+    // new Point2D.Double(0, 0));
     readAttributes(figure, domInput);
     readDecorator(figure, domInput);
   }

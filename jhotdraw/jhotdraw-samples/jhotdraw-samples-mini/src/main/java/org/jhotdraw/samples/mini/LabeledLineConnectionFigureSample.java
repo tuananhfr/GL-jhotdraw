@@ -14,8 +14,8 @@ import org.jhotdraw.draw.figure.LabeledLineConnectionFigure;
 import org.jhotdraw.draw.figure.RectangleFigure;
 import org.jhotdraw.draw.figure.TextFigure;
 import org.jhotdraw.draw.layouter.LocatorLayouter;
-import org.jhotdraw.draw.liner.ElbowLiner;
 import org.jhotdraw.draw.locator.BezierLabelLocator;
+import org.jhotdraw.draw.locator.ElbowLiner;
 import org.jhotdraw.geom.Geom;
 
 /**

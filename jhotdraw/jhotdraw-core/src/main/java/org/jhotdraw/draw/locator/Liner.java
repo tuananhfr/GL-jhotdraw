@@ -5,7 +5,7 @@
  * You may not use, copy or modify this file, except in compliance with the
  * accompanying license terms.
  */
-package org.jhotdraw.draw.liner;
+package org.jhotdraw.draw.locator;
 
 import java.util.*;
 import org.jhotdraw.draw.figure.ConnectionFigure;

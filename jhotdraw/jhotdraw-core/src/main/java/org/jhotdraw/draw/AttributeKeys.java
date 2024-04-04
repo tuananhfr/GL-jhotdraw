@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 import org.jhotdraw.draw.decoration.LineDecoration;
 import org.jhotdraw.draw.figure.AbstractAttributedFigure;
 import org.jhotdraw.draw.figure.Figure;
-import org.jhotdraw.draw.liner.Liner;
+import org.jhotdraw.draw.locator.Liner;
 import org.jhotdraw.geom.Dimension2DDouble;
 import org.jhotdraw.geom.DoubleStroke;
 import org.jhotdraw.geom.Insets2D;

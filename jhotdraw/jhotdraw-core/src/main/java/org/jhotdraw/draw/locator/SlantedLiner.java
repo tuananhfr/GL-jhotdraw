@@ -5,7 +5,7 @@
  * You may not use, copy or modify this file, except in compliance with the
  * accompanying license terms.
  */
-package org.jhotdraw.draw.liner;
+package org.jhotdraw.draw.locator;
 
 import java.awt.geom.*;
 import java.util.*;
@@ -186,15 +186,15 @@ public class SlantedLiner implements Liner {
     path.invalidatePath();
   }
 
-  //  @Override
-  //  public void read(DOMInput in) {
-  //    slantSize = in.getAttribute("slant", 20d);
-  //  }
+  // @Override
+  // public void read(DOMInput in) {
+  // slantSize = in.getAttribute("slant", 20d);
+  // }
   //
-  //  @Override
-  //  public void write(DOMOutput out) {
-  //    out.addAttribute("slant", slantSize);
-  //  }
+  // @Override
+  // public void write(DOMOutput out) {
+  // out.addAttribute("slant", slantSize);
+  // }
 
   @Override
   public Liner clone() {

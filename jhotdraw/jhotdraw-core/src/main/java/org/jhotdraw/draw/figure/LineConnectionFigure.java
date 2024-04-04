@@ -22,7 +22,7 @@ import org.jhotdraw.draw.handle.BezierOutlineHandle;
 import org.jhotdraw.draw.handle.ConnectionEndHandle;
 import org.jhotdraw.draw.handle.ConnectionStartHandle;
 import org.jhotdraw.draw.handle.Handle;
-import org.jhotdraw.draw.liner.Liner;
+import org.jhotdraw.draw.locator.Liner;
 import org.jhotdraw.geom.path.BezierPath;
 
 /**
@@ -60,11 +60,12 @@ public class LineConnectionFigure extends LineFigure implements ConnectionFigure
       // This is because, we must not set our connectors to null,
       // in order to support reconnection using redo.
       /*
-      if (evt.getFigure() == owner.getStartFigure()
-      || evt.getFigure() == owner.getEndFigure()) {
-      owner.setStartConnector(null);
-      owner.setEndConnector(null);
-      }*/
+       * if (evt.getFigure() == owner.getStartFigure()
+       * || evt.getFigure() == owner.getEndFigure()) {
+       * owner.setStartConnector(null);
+       * owner.setEndConnector(null);
+       * }
+       */
       owner.fireFigureRequestRemove();
     }
 
@@ -223,39 +224,39 @@ public class LineConnectionFigure extends LineFigure implements ConnectionFigure
   // COMPOSITE FIGURES
   // LAYOUT
   /*
-  public Liner getBezierPathLayouter() {
-  return (Liner) get(BEZIER_PATH_LAYOUTER);
-  }
-  public void setBezierPathLayouter(Liner newValue) {
-  set(BEZIER_PATH_LAYOUTER, newValue);
-  }
-  /**
+   * public Liner getBezierPathLayouter() {
+   * return (Liner) get(BEZIER_PATH_LAYOUTER);
+   * }
+   * public void setBezierPathLayouter(Liner newValue) {
+   * set(BEZIER_PATH_LAYOUTER, newValue);
+   * }
+   * /**
    * Lays out the connection. This is called when the connection
    * itself changes. By default the connection is recalculated
    * /
-  public void layoutConnection() {
-  if (getStartConnector() != null && getEndConnector() != null) {
-  willChange();
-  Liner bpl = getBezierPathLayouter();
-  if (bpl != null) {
-  bpl.lineout(this);
-  } else {
-  if (getStartConnector() != null) {
-  Point2D.Double start = getStartConnector().findStart(this);
-  if(start != null) {
-  basicSetStartPoint(start);
-  }
-  }
-  if (getEndConnector() != null) {
-  Point2D.Double end = getEndConnector().findEnd(this);
-  if(end != null) {
-  basicSetEndPoint(end);
-  }
-  }
-  }
-  changed();
-  }
-  }
+   * public void layoutConnection() {
+   * if (getStartConnector() != null && getEndConnector() != null) {
+   * willChange();
+   * Liner bpl = getBezierPathLayouter();
+   * if (bpl != null) {
+   * bpl.lineout(this);
+   * } else {
+   * if (getStartConnector() != null) {
+   * Point2D.Double start = getStartConnector().findStart(this);
+   * if(start != null) {
+   * basicSetStartPoint(start);
+   * }
+   * }
+   * if (getEndConnector() != null) {
+   * Point2D.Double end = getEndConnector().findEnd(this);
+   * if(end != null) {
+   * basicSetEndPoint(end);
+   * }
+   * }
+   * }
+   * changed();
+   * }
+   * }
    */
   // CLONING
   // EVENT HANDLING
@@ -290,8 +291,8 @@ public class LineConnectionFigure extends LineFigure implements ConnectionFigure
     // when an undo is performed, after the LineConnection has been
     // deleted.
     /*
-    setStartConnector(null);
-    setEndConnector(null);
+     * setStartConnector(null);
+     * setEndConnector(null);
      */
     super.removeNotify(drawing);
   }
@@ -444,23 +445,23 @@ public class LineConnectionFigure extends LineFigure implements ConnectionFigure
   }
 
   /*
-  public void basicSetPoint(int index, Point2D.Double p) {
-  if (index != 0 && index != getNodeCount() - 1) {
-  if (getStartConnector() != null) {
-  Point2D.Double start = getStartConnector().findStart(this);
-  if(start != null) {
-  basicSetStartPoint(start);
-  }
-  }
-  if (getEndConnector() != null) {
-  Point2D.Double end = getEndConnector().findEnd(this);
-  if(end != null) {
-  basicSetEndPoint(end);
-  }
-  }
-  }
-  super.basicSetPoint(index, p);
-  }
+   * public void basicSetPoint(int index, Point2D.Double p) {
+   * if (index != 0 && index != getNodeCount() - 1) {
+   * if (getStartConnector() != null) {
+   * Point2D.Double start = getStartConnector().findStart(this);
+   * if(start != null) {
+   * basicSetStartPoint(start);
+   * }
+   * }
+   * if (getEndConnector() != null) {
+   * Point2D.Double end = getEndConnector().findEnd(this);
+   * if(end != null) {
+   * basicSetEndPoint(end);
+   * }
+   * }
+   * }
+   * super.basicSetPoint(index, p);
+   * }
    */
   @Override
   public void lineout() {

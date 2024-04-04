@@ -13,7 +13,7 @@ import org.jhotdraw.draw.*;
 import org.jhotdraw.draw.figure.ConnectionFigure;
 import org.jhotdraw.draw.figure.LineConnectionFigure;
 import org.jhotdraw.draw.figure.TextAreaFigure;
-import org.jhotdraw.draw.liner.ElbowLiner;
+import org.jhotdraw.draw.locator.ElbowLiner;
 import org.jhotdraw.geom.Geom;
 
 /** Example showing how to connect two text areas with an elbow connection. */

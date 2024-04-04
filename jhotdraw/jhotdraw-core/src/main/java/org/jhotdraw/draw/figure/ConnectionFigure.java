@@ -9,7 +9,7 @@ package org.jhotdraw.draw.figure;
 
 import java.awt.geom.*;
 import org.jhotdraw.draw.connector.Connector;
-import org.jhotdraw.draw.liner.Liner;
+import org.jhotdraw.draw.locator.Liner;
 import org.jhotdraw.geom.path.BezierPath;
 
 /**
